@@ -1,0 +1,35 @@
+{
+    "name": "niridoy/lara-installer",
+    "description": "Laravel web installer by ridoy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md Nazmul Islam",
+            "email": "nazmul.islam.ridoy@gmail.com"
+        },
+        {
+            "name": "Yousuf Hossain Shanto",
+            "email": "yousuf.hossain.shanto@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ridoy\\LaravelInstaller\\": "src/"
+        },
+        "files": [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ridoy\\LaravelInstaller\\Providers\\LaravelInstallerServiceProvider"
+            ]
+        }
+    },
+   "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
