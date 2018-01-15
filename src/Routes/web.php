@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 'Ridoy\LaravelInstaller\Controllers','middleware' => ['web'], function() {
+Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 'Ridoy\LaravelInstaller\Controllers','middleware' => ['web']], function() {
     Route::get('/', [
         'as' => 'welcome',
         'uses' => 'WelcomeController@welcome'

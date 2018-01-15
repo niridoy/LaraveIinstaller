@@ -31,5 +31,7 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "niridoy/lara-installer": "dev-master"
+    }
 }
