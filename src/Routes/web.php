@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 'niridoy\lara-installer\Controllers','middleware' => ['web', 'install']], function() {
+Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 'Ridoy\LaravelInstaller\Controllers','middleware' => ['web', 'install']], function() {
     Route::get('/', [
         'as' => 'welcome',
         'uses' => 'WelcomeController@welcome'
@@ -53,7 +53,7 @@ Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 
 
 });
 
-Route::group(['prefix' => 'update','as' => 'LaravelUpdater::','namespace' => 'niridoy\lara-installer\Controllers','middleware' => 'web'],function() {
+Route::group(['prefix' => 'update','as' => 'LaravelUpdater::','namespace' => 'Ridoy\LaravelInstaller\Controllers','middleware' => 'web'],function() {
     Route::group(['middleware' => 'update'], function() {
 
         Route::get('/', [
