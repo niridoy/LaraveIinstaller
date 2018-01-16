@@ -37,9 +37,9 @@ class DatabaseManager
 			
             DB::connection()->getPdo();
             DB::unprepared(file_get_contents('core/database.sql')); 
-			if(file_exists(base_path('database.sql')){
-				 File::delete(base_path('database.sql'));
-			}
+			//if(file_exists(base_path('database.sql')){
+				// File::delete(base_path('database.sql'));
+			//}
             
         }
         catch(Exception $e){

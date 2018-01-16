@@ -31,7 +31,9 @@ class EnvironmentController extends Controller
      */
     public function environmentMenu()
     {
-        return view('vendor.installer.environment');
+        $envConfig = $this->EnvironmentManager->getEnvContent();
+
+        return view('vendor.installer.environment-wizard', compact('envConfig'));
     }
 
     /**
