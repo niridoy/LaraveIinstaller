@@ -19,7 +19,7 @@ class canInstall
      */
     public function handle($request, Closure $next)
     {
-        if(!$this->alreadyInstalled()) {
+        if($this->alreadyInstalled()) {
 
             $installedRedirect = config('installer.installedAlreadyAction');
 

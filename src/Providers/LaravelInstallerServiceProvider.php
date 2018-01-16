@@ -50,7 +50,7 @@ class LaravelInstallerServiceProvider extends ServiceProvider
         ], 'laravelinstaller');
 
         $this->publishes([
-            __DIR__.'/../assets' => public_path('installer'),
+            __DIR__.'/../assets' => base_path('../installer'),
         ], 'laravelinstaller');
 
         $this->publishes([
