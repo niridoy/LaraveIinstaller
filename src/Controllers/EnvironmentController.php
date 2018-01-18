@@ -118,7 +118,7 @@ class EnvironmentController extends Controller
 
         mysqli_close($conn);
 
-        if(!$data->status=='Error'){
+        if($data->status=='Error'){
             session()->flash('message', $data->message);
             return redirect()->back();
         }
