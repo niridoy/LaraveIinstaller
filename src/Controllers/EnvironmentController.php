@@ -84,6 +84,11 @@ class EnvironmentController extends Controller
      */
     public function saveWizard(Request $request, Redirector $redirect)
     {
+        if (!file_exists('core/database.sql')) {
+            session()->flash('message', 'Some file are missing, Please Contact Support. Send an email to software@thesoftking.com');
+            return redirect()->back();
+        }
+
         $rules = config('installer.environment.form.rules');
         $messages = [
             'environment_custom.required_if' => trans('installer_messages.environment.wizard.form.name_required'),
@@ -118,7 +123,7 @@ class EnvironmentController extends Controller
 
         mysqli_close($conn);
 
-        if($data->status=='Error'){
+        if(!$data->status=='Error'){
             session()->flash('message', $data->message);
             return redirect()->back();
         }
