@@ -10,6 +10,15 @@
 @endsection
 
 @section('container')
+<style>
+    .main .alert{
+        background-color: red;
+        color: #ffffff;
+    }
+    .box{
+        width:800px;
+    }
+</style>
     <div class="tabs tabs-full">
 
         <input id="tab1" type="radio" name="tabs" class="tab-input" checked />
@@ -18,7 +27,6 @@
             <br />
             <b>{{ trans('installer_messages.environment.wizard.tabs.application') }} Setting</b>
         </label>
-
         <form method="post" action="{{ route('LaravelInstaller::environmentSaveWizard') }}" class="tabs-wrap">
            
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -39,75 +47,104 @@
                 <p style="text-align:center; font-size:20px;font-weight:600">PURCHASE VERIFICATION</p>
                 <hr style="background: #34a0db; height: 1px;">
 
-                <div class="form-group {{ $errors->has('envato_username') ? ' has-error ' : '' }}">
-                    <label for="envato_username">
-                        Envato Username
-                    </label>
-                    <input type="text" name="envato_username" id="envato_username" value="" placeholder="Envato Username" />
-                    @if ($errors->has('envato_username'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('envato_username') }}
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group {{ $errors->has('envato_purchase_code') ? ' has-error ' : '' }}">
-                    <label for="envato_purchase_code">
-                       Purchase Code
-                    </label>
-                    <input type="text" name="envato_purchase_code" id="envato_purchase_code" value="" placeholder="Purchase Code" />
-                    @if ($errors->has('envato_purchase_code'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('envato_purchase_code') }}
-                        </span>
-                    @endif
+                <div class="row">
+                    <div style="float: left;width: 48%;">
+                         <div class="form-group {{ $errors->has('envato_username') ? ' has-error ' : '' }}">
+                            <label for="envato_username">
+                                Envato Username
+                            </label>
+                            <input type="text" name="envato_username" id="envato_username" value="" placeholder="Envato Username" />
+                            @if ($errors->has('envato_username'))
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ $errors->first('envato_username') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div style="float: right;width: 48%">
+                         <div class="form-group {{ $errors->has('envato_purchase_code') ? ' has-error ' : '' }}">
+                            <label for="envato_purchase_code">
+                               Purchase Code
+                            </label>
+                            <input type="text" name="envato_purchase_code" id="envato_purchase_code" value="" placeholder="Purchase Code" />
+                            @if ($errors->has('envato_purchase_code'))
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ $errors->first('envato_purchase_code') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                  <p style="text-align:center; font-size:20px;font-weight:600;">DATABASE SETTING</p>
                 <hr style="background: #34a0db; height: 1px;">
+                <div class="row">
+                    <div style="float: left;width: 48%;">
+                        <div class="form-group {{ $errors->has('database_hostname') ? ' has-error ' : '' }}">
+                            <label for="database_hostname">
+                                {{ trans('installer_messages.environment.wizard.form.db_host_label') }} <span style="color: red">(Host Name: 127.0.0.1 for localhost)</span> 
+                            </label>
+                            <input type="text" name="database_hostname" id="database_hostname" value="127.0.0.1" placeholder="{{ trans('installer_messages.environment.wizard.form.db_host_placeholder') }}" />
+                            @if ($errors->has('database_hostname'))
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ $errors->first('database_hostname') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div style="float: right;width: 48%;">
+                         <div class="form-group {{ $errors->has('database_name') ? ' has-error ' : '' }}">
+                            <label for="database_name">
+                                {{ trans('installer_messages.environment.wizard.form.db_name_label') }}
+                            </label>
+                            <input type="text" name="database_name" id="database_name" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_name_placeholder') }}" />
+                            @if ($errors->has('database_name'))
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ $errors->first('database_name') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
 
-                <div class="form-group {{ $errors->has('database_name') ? ' has-error ' : '' }}">
-                    <label for="database_name">
-                        {{ trans('installer_messages.environment.wizard.form.db_name_label') }}
-                    </label>
-                    <input type="text" name="database_name" id="database_name" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_name_placeholder') }}" />
-                    @if ($errors->has('database_name'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('database_name') }}
-                        </span>
-                    @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('database_username') ? ' has-error ' : '' }}">
-                    <label for="database_username">
-                        {{ trans('installer_messages.environment.wizard.form.db_username_label') }}
-                    </label>
-                    <input type="text" name="database_username" id="database_username" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_username_placeholder') }}" />
-                    @if ($errors->has('database_username'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('database_username') }}
-                        </span>
-                    @endif
-                </div>
+                 <div class="row">
+                    <div style="float: left;width: 48%;">
+                        <div class="form-group {{ $errors->has('database_username') ? ' has-error ' : '' }}">
+                            <label for="database_username">
+                                {{ trans('installer_messages.environment.wizard.form.db_username_label') }}
+                            </label>
+                            <input type="text" name="database_username" id="database_username" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_username_placeholder') }}" />
+                            @if ($errors->has('database_username'))
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {{ $errors->first('database_username') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div style="float: right;width: 48%;">
+                           <div class="form-group {{ $errors->has('database_password') ? ' has-error ' : '' }}">
+                                <label for="database_password">
+                                    {{ trans('installer_messages.environment.wizard.form.db_password_label') }}
+                                </label>
+                                <input type="password" name="database_password" id="database_password" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_password_placeholder') }}" />
+                                @if ($errors->has('database_password'))
+                                    <span class="error-block">
+                                        <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                        {{ $errors->first('database_password') }}
+                                    </span>
+                                @endif
+                            </div>
+                    </div>
 
-                <div class="form-group {{ $errors->has('database_password') ? ' has-error ' : '' }}">
-                    <label for="database_password">
-                        {{ trans('installer_messages.environment.wizard.form.db_password_label') }}
-                    </label>
-                    <input type="password" name="database_password" id="database_password" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.db_password_placeholder') }}" />
-                    @if ($errors->has('database_password'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('database_password') }}
-                        </span>
-                    @endif
                 </div>
 
                 <div class="buttons">
-                    <button class="button" type="submit">
+                    <button class="button" type="submit" style="width: 100%">
                         {{ trans('installer_messages.environment.wizard.form.buttons.install') }}
                         <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
                     </button>

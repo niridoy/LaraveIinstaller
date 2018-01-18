@@ -96,6 +96,33 @@ class EnvironmentController extends Controller
             return view('vendor.installer.environment-wizard', compact('errors', 'envConfig'));
         }
 
+        $response = file_get_contents('http://thesoftking.com/verify/api.php?code='.$request->envato_purchase_code.'&user='.$request->envato_username.'&domain='.$request->app_url);
+        $data = json_decode($response);
+
+        
+        //Create connection
+        $conn = @mysqli_connect($request->database_hostname, $request->database_username, $request->database_password);
+
+        // Check connection
+        if (!$conn) {
+            session()->flash('message', 'Something wrong to your datbase conncetion information');
+            return redirect()->back();
+        }
+
+        $db_selected = mysqli_select_db($conn,$request->database_name);
+        if (!$db_selected) {
+
+            session()->flash('message', 'Input database name not found in your server!');
+            return redirect()->back();
+        }   
+
+        mysqli_close($conn);
+
+        if(!$data->status=='Error'){
+            session()->flash('message', $data->message);
+            return redirect()->back();
+        }
+
         $results = $this->EnvironmentManager->saveFileWizard($request);
 
         return $redirect->route('LaravelInstaller::database')

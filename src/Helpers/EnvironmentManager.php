@@ -120,8 +120,8 @@ class EnvironmentManager
         'MAIL_ENCRYPTION=' . 'null' . "\n\n" .
         'PUSHER_APP_ID=' . '' . "\n" .
         'PUSHER_APP_KEY=' . '' . "\n" .
-        'PUSHER_APP_SECRET=' . ''.
-        'envato_username=' . $request->envato_username . "\n" .
+        'PUSHER_APP_SECRET=' . ''."\n" .
+        'envato_username=' . $request->envato_username . "\n\n" .
         'envato_purchase_code=' . $request->envato_purchase_code;
 
         try {

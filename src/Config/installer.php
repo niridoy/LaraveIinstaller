@@ -61,6 +61,7 @@ return [
                 'envato_username'       => 'required|string',
                 'envato_purchase_code'  => 'required|string',
                 'app_url'               => 'required|url',
+                'database_hostname'     => 'required|string|max:50',
                 'database_name'         => 'required|string|max:50',
                 'database_username'     => 'required|string|max:50',
                 'database_password'     => 'required|string|max:50',
